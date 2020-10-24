@@ -1,0 +1,99 @@
+@import "./src/styles";
+
+.create-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  align-content: center;
+  font-family: $font;
+  background-color: $bg-overlay;
+
+  h1 {
+    font-size: 4em;
+  }
+  .settings-container {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.445);
+    border-radius: 15px;
+    padding: 20px;
+    color: #fff;
+
+    .titel-container {
+      display: flex;
+      flex-flow: column;
+      padding: 20px 6px;
+      font-size: 1.5em;
+
+      input {
+        padding: 7px 10px;
+        border-radius: 11px;
+        border: 0;
+        background: rgba(0, 0, 0, 0.589);
+        color: #fff;
+        font-size: 1.5em;
+        margin: 5px 0;
+      }
+    }
+
+    .description-container {
+      display: flex;
+      flex-flow: column;
+      padding: 10px 6px;
+      font-size: 1.2em;
+
+      input {
+        padding: 7px 10px;
+        border-radius: 11px;
+        border: 0;
+        background: rgba(0, 0, 0, 0.589);
+        color: #fff;
+        font-size: 1.2em;
+        margin: 5px 0;
+      }
+    }
+
+    .select-mode-container {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      align-content: center;
+
+      .select-mode {
+        display: flex;
+        flex-flow: row;
+
+        button {
+          font-size: 1.6em;
+          border: 0;
+          background-color: $ui-dark;
+          border-radius: 5px;
+          width: 4em;
+          margin: 10px 40px;
+        }
+
+        button:hover {
+          background-color: $ui-light;
+        }
+      }
+    }
+    .select-list-container {
+      width: calc(100% - 30px);
+      padding: 7px 10px;
+      border-radius: 11px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.589);
+      margin: 0 5px;
+    }
+  }
+}
+
+.mat-calendar-body-cell.selected {
+  background-color: red !important;
+  border-radius: 50%;
+}
+.drop-calendar {
+  width: 30rem;
+}

@@ -9,12 +9,10 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { CreateComponent } from './pages/create/create.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LandingComponent
-  ],
+  declarations: [AppComponent, LandingComponent, CreateComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +22,6 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
     NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

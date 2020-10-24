@@ -1,0 +1,37 @@
+<div class="create-container">
+  <h1>Create Poll</h1>
+
+  <div class="settings-container">
+    <div class="titel-container">
+      Titel:
+      <input type="text" class="titel" />
+    </div>
+
+    <div class="description-container">
+      Description: (optional)
+      <input type="text" class="description" />
+    </div>
+
+    <div class="select-mode-container">
+      <div class="select-mode">
+        <button (click)="selectedMode = 'Date'" class="Date">Date</button>
+        <button (click)="selectedMode = 'Text'" class="text">Text</button>
+      </div>
+    </div>
+    <div *ngIf="selectedMode != 'None'" class="select-list-container">
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>calendar_today</mat-icon>
+      </button>
+      <mat-menu #appMenu="matMenu">
+        <div (click)="$event.stopPropagation()">
+          <mat-calendar
+            #calendar
+            (selectedChange)="select($event, calendar)"
+            [dateClass]="isSelected"
+          >
+          </mat-calendar>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+</div>

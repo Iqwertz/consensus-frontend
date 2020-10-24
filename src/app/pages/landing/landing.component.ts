@@ -16,6 +16,7 @@ import { Store } from '@ngxs/store';
 export class LandingComponent implements OnInit {
 
   constructor(
+    private store: Store,
     private connectService: ConnectService,
     private router: Router,
   ) { }
@@ -26,8 +27,8 @@ export class LandingComponent implements OnInit {
   createClicked() {
     this.connectService.createRoom().subscribe(
       (res) => {
-        //this.store.dispatch(new SetCreateRoomId(res.roomId));
-        console.log(res);
+        this.store.dispatch(new SetCreateRoomId(res.roomId));
+        this.router.navigate(['create']);
       },
       (err) => {
         alert(`Couldn't reach server`);

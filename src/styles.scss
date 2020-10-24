@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+$font: "Work Sans", sans-serif;
+$bg-image: url("/assets/bg.jpg");
+$bg-overlay: rgba(0, 0, 0, 0.241);
+$ui-light: #fff3b0;
+$ui-dark: #e09f3e;
+$passiv-light: #9e2a2b;
+$passiv-dark: #540b0e;
+$secondary: #335c67;
+
+body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-image: $bg-image;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
