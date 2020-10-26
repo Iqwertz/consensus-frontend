@@ -1,4 +1,4 @@
-import { SetCreateRoomId } from './app.action';
+import { SetCreateRoomIds } from './app.action';
 //////Use
 /*
   @Select(AppState.userId)
@@ -14,26 +14,34 @@ import { SetCreateRoomId } from './app.action';
 
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 
+export interface RoomIds {
+  roomId: string;
+  creatorId: string;
+}
+
 export interface AppStateModel {
-  createRoomId: string;
+  createRoomIds: RoomIds;
 }
 
 @State<AppStateModel>({
   name: 'appState',
   defaults: {
-    createRoomId: "",
+    createRoomIds: { roomId: '', creatorId: '' },
   },
 })
 export class AppState {
   @Selector()
-  static userId(state: AppStateModel) {
-    return state.createRoomId;
+  static createRoomIds(state: AppStateModel) {
+    return state.createRoomIds;
   }
 
-  @Action(SetCreateRoomId)
-  setUserId(context: StateContext<AppStateModel>, action: SetCreateRoomId) {
+  @Action(SetCreateRoomIds)
+  SetCreateRoomIds(
+    context: StateContext<AppStateModel>,
+    action: SetCreateRoomIds
+  ) {
     context.patchState({
-      createRoomId: action.createRoomId,
+      createRoomIds: action.createRoomIds,
     });
   }
 }

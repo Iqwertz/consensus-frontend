@@ -1,4 +1,5 @@
-export class SetCreateRoomId {
-  static type = 'SetCreateRoomId';
-  constructor(public createRoomId: string) { }
+import { RoomIds } from './app.state';
+export class SetCreateRoomIds {
+  static type = 'SetCreateRoomIds';
+  constructor(public createRoomIds: RoomIds) {}
 }

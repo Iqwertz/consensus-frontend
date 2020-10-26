@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+@import "~js-datepicker/src/datepicker";
 
 $font: "Work Sans", sans-serif;
 $bg-image: url("/assets/bg.jpg");
@@ -20,3 +21,6 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

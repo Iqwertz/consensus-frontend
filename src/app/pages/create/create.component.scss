@@ -1,18 +1,29 @@
 @import "./src/styles";
 
+.hide {
+  visibility: hidden;
+  height: 0 !important;
+}
+
+.show {
+  visibility: visible;
+}
+
 .create-container {
   position: absolute;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-flow: column;
   align-items: center;
   align-content: center;
   font-family: $font;
   background-color: $bg-overlay;
+  padding: 40px 0;
 
   h1 {
     font-size: 4em;
+    margin: 30px;
   }
   .settings-container {
     width: 50%;
@@ -24,35 +35,15 @@
     .titel-container {
       display: flex;
       flex-flow: column;
-      padding: 20px 6px;
+      padding: 5px 6px;
       font-size: 1.5em;
-
-      input {
-        padding: 7px 10px;
-        border-radius: 11px;
-        border: 0;
-        background: rgba(0, 0, 0, 0.589);
-        color: #fff;
-        font-size: 1.5em;
-        margin: 5px 0;
-      }
     }
 
     .description-container {
       display: flex;
       flex-flow: column;
-      padding: 10px 6px;
+      padding: 5px 6px;
       font-size: 1.2em;
-
-      input {
-        padding: 7px 10px;
-        border-radius: 11px;
-        border: 0;
-        background: rgba(0, 0, 0, 0.589);
-        color: #fff;
-        font-size: 1.2em;
-        margin: 5px 0;
-      }
     }
 
     .select-mode-container {
@@ -60,40 +51,33 @@
       flex-flow: column;
       align-items: center;
       align-content: center;
-
-      .select-mode {
-        display: flex;
-        flex-flow: row;
-
-        button {
-          font-size: 1.6em;
-          border: 0;
-          background-color: $ui-dark;
-          border-radius: 5px;
-          width: 4em;
-          margin: 10px 40px;
-        }
-
-        button:hover {
-          background-color: $ui-light;
-        }
-      }
     }
     .select-list-container {
       width: calc(100% - 30px);
       padding: 7px 10px;
       border-radius: 11px;
       border: 0;
-      background: rgba(0, 0, 0, 0.589);
       margin: 0 5px;
+
+      .datepicker-container {
+        height: 500px;
+      }
+
+      .text-mode-container {
+        width: 100%;
+        font-size: 1em;
+
+        .full-width {
+          width: 100%;
+        }
+      }
+    }
+    .create-button-container {
+      padding: 5px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      align-content: center;
     }
   }
-}
-
-.mat-calendar-body-cell.selected {
-  background-color: red !important;
-  border-radius: 50%;
-}
-.drop-calendar {
-  width: 30rem;
 }

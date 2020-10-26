@@ -3,35 +3,78 @@
 
   <div class="settings-container">
     <div class="titel-container">
-      Titel:
-      <input type="text" class="titel" />
+      <mat-form-field class="full-width">
+        <mat-label>Titel</mat-label>
+        <input
+          matInput
+          [formControl]="titelFormControl"
+          placeholder="Titel of the Poll"
+          [(ngModel)]="titel"
+        />
+        <mat-error *ngIf="titelFormControl.hasError('required')">
+          Titel is required
+        </mat-error>
+      </mat-form-field>
     </div>
 
     <div class="description-container">
-      Description: (optional)
-      <input type="text" class="description" />
+      <mat-form-field class="full-width">
+        <mat-label>Description: (optional)</mat-label>
+        <textarea matInput [(ngModel)]="description"></textarea>
+      </mat-form-field>
     </div>
 
     <div class="select-mode-container">
-      <div class="select-mode">
-        <button (click)="selectedMode = 'Date'" class="Date">Date</button>
-        <button (click)="selectedMode = 'Text'" class="text">Text</button>
-      </div>
+      <!--<div class="select-mode">-->
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle (click)="selectedMode = 'Date'"
+          >Date</mat-button-toggle
+        >
+        <mat-button-toggle (click)="selectedMode = 'Text'"
+          >Text</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+      <!--<button (click)="selectedMode = 'Date'" class="Date">Date</button>
+        <button (click)="selectedMode = 'Text'" class="text">Text</button>-->
     </div>
     <div *ngIf="selectedMode != 'None'" class="select-list-container">
-      <button mat-icon-button [matMenuTriggerFor]="appMenu">
-        <mat-icon>calendar_today</mat-icon>
-      </button>
-      <mat-menu #appMenu="matMenu">
-        <div (click)="$event.stopPropagation()">
-          <mat-calendar
-            #calendar
-            (selectedChange)="select($event, calendar)"
-            [dateClass]="isSelected"
-          >
-          </mat-calendar>
+      <div
+        #datePickerContainer
+        class="datepicker-container"
+        [ngClass]="{
+          show: selectedMode == 'Date',
+          hide: selectedMode != 'Date'
+        }"
+      ></div>
+      <div class="text-mode-container" *ngIf="selectedMode == 'Text'">
+        <div *ngFor="let optionItem of optionsList; let index = index">
+          <mat-form-field class="full-width">
+            <mat-label>Option</mat-label>
+            <input
+              matInput
+              placeholder="An Option..."
+              [(ngModel)]="optionsList[index].entrydata"
+            />
+            <button
+              mat-button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="removeOption(index)"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
         </div>
-      </mat-menu>
+        <button mat-raised-button color="accent" (click)="addOption()">
+          + Add Option
+        </button>
+      </div>
+    </div>
+    <div class="create-button-container">
+      <button mat-raised-button color="primary" (click)="createPoll()">
+        Create Poll
+      </button>
     </div>
   </div>
 </div>
