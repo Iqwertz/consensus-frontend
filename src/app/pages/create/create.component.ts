@@ -10,6 +10,7 @@ import { Select } from '@ngxs/store';
 import Datepickk from 'datepickk';
 import { AppState, RoomIds } from '../../store/app.state';
 import { ConnectService } from '../../services/connect.service';
+import { Router } from '@angular/router';
 
 export type SelectedMode = 'None' | 'Date' | 'Text';
 
@@ -50,7 +51,7 @@ export class CreateComponent implements OnInit {
 
   createRoomIds: RoomIds;
 
-  constructor(private connectService: ConnectService) {}
+  constructor(private connectService: ConnectService, private router: Router) {}
 
   ngOnInit(): void {
     this.createRoomIds$.subscribe((createRoomIds: RoomIds) => {
@@ -97,7 +98,11 @@ export class CreateComponent implements OnInit {
       }
 
       this.connectService.createRoom(newRoom).subscribe(
-        (res) => {},
+        (res) => {
+          this.router.navigate(['/polldata'], {
+            queryParams: { rId: res.roomId, cId: res.creatorId },
+          });
+        },
         (err) => {}
       );
     }
