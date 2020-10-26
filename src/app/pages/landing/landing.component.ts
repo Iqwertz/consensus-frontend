@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {}
 
   createClicked() {
-    this.connectService.createRoom().subscribe(
+    this.connectService.newRoom().subscribe(
       (res: RoomIds) => {
         this.store.dispatch(new SetCreateRoomIds(res));
         this.router.navigate(['create']);

@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Select } from '@ngxs/store';
 import Datepickk from 'datepickk';
 import { AppState, RoomIds } from '../../store/app.state';
+import { ConnectService } from '../../services/connect.service';
 
 export type SelectedMode = 'None' | 'Date' | 'Text';
 
@@ -49,7 +50,7 @@ export class CreateComponent implements OnInit {
 
   createRoomIds: RoomIds;
 
-  constructor() {}
+  constructor(private connectService: ConnectService) {}
 
   ngOnInit(): void {
     this.createRoomIds$.subscribe((createRoomIds: RoomIds) => {
@@ -94,6 +95,11 @@ export class CreateComponent implements OnInit {
       } else {
         newRoom.data = this.formatDates(this.datepicker.selectedDates);
       }
+
+      this.connectService.createRoom(newRoom).subscribe(
+        (res) => {},
+        (err) => {}
+      );
     }
   }
 
@@ -114,7 +120,7 @@ export class CreateComponent implements OnInit {
       'Dec',
     ];
 
-    let formattedDates: roomlistentry[];
+    let formattedDates: roomlistentry[] = [];
     for (let date of dates) {
       let stringDate =
         days[date.getDay()] +
