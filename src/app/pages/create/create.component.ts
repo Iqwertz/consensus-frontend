@@ -17,14 +17,17 @@ export type SelectedMode = 'None' | 'Date' | 'Text';
 export interface roomlistentry {
   entrydata: string;
   date?: Date;
+  votes?: string[];
 }
 
 export interface RoomObject {
   titel: string;
+  url: string;
   roomId: string;
   creatorId: string;
   creationDate: Date;
   description: string;
+  parNames: string[];
   data: roomlistentry[];
 }
 
@@ -84,15 +87,24 @@ export class CreateComponent implements OnInit {
     if (this.titel !== undefined && this.selectedMode != 'None') {
       let newRoom: RoomObject = {
         titel: this.titel,
+        url: window.location.origin + '/poll?rId=' + this.createRoomIds.roomId,
         description: this.description,
         creationDate: new Date(),
         roomId: this.createRoomIds.roomId,
         creatorId: this.createRoomIds.creatorId,
+        parNames: [],
         data: [],
       };
 
+      console.log(newRoom.url);
+
       if (this.selectedMode == 'Text') {
-        newRoom.data = this.optionsList;
+        for (let entry of this.optionsList) {
+          newRoom.data.push({
+            votes: [],
+            entrydata: entry.entrydata,
+          });
+        }
       } else {
         newRoom.data = this.formatDates(this.datepicker.selectedDates);
       }
@@ -136,6 +148,7 @@ export class CreateComponent implements OnInit {
       formattedDates.push({
         entrydata: stringDate,
         date: date,
+        votes: [],
       });
     }
     return formattedDates;

@@ -1,1 +1,21 @@
-<p>polldata works!</p>
+<div class="create-container">
+  <h1>{{ titel }}</h1>
+  <div class="data-container">
+    <mat-card class="description-container" *ngIf="description.length > 0">
+      <mat-card-content>
+        <mat-card-subtitle>Description:</mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-content>
+        {{ description }}
+      </mat-card-content>
+    </mat-card>
+
+    <mat-form-field class="copy-url-field">
+      <mat-label>Copy Link to Share this Poll</mat-label>
+      <input readonly matInput type="text" [(ngModel)]="pollData.url" />
+      <button mat-button matSuffix mat-icon-button (click)="titel = titel">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+</div>

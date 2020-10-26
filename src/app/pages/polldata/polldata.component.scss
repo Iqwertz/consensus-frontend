@@ -1,0 +1,32 @@
+@import "./src/styles";
+
+.create-container {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  align-content: center;
+  font-family: $font;
+  background-color: $bg-overlay;
+  padding: 40px 0;
+
+  h1 {
+    font-size: 4em;
+    margin: 30px;
+  }
+  .data-container {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.445);
+    border-radius: 15px;
+    padding: 20px;
+    color: #fff;
+
+    .copy-url-field {
+      padding: 25px 0;
+      font-size: 1.2em;
+      width: 100%;
+    }
+  }
+}

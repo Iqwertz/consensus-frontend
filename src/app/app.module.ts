@@ -15,11 +15,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PolldataComponent } from './pages/polldata/polldata.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent, CreateComponent, PolldataComponent],
+  declarations: [
+    AppComponent,
+    LandingComponent,
+    CreateComponent,
+    PolldataComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,6 +40,7 @@ import { PolldataComponent } from './pages/polldata/polldata.component';
     FormsModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
