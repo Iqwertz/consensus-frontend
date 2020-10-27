@@ -13,8 +13,13 @@
     <mat-form-field class="copy-url-field">
       <mat-label>Copy Link to Share this Poll</mat-label>
       <input readonly matInput type="text" [(ngModel)]="pollData.url" />
-      <button mat-button matSuffix mat-icon-button (click)="titel = titel">
-        <mat-icon>close</mat-icon>
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        (click)="copyStringToClipboard(pollData.url)"
+      >
+        <mat-icon>file_copy</mat-icon>
       </button>
     </mat-form-field>
   </div>

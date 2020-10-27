@@ -1,0 +1,45 @@
+<div class="create-container">
+  <h1>{{ titel }}</h1>
+  <div class="data-container">
+    <div class="description">
+      <mat-card class="description-container" *ngIf="description.length > 0">
+        <mat-card-content>
+          <mat-card-subtitle>Description:</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-content>
+          {{ description }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <mat-form-field class="name-input">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        [formControl]="nameFormControl"
+        placeholder="Youre Name"
+        [(ngModel)]="name"
+      />
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-selection-list [(ngModel)]="pollSelect">
+      <mat-label>Select:</mat-label>
+      <mat-list-option *ngFor="let entry of pollData.data" [value]="entry">
+        {{ entry.entrydata }}
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+
+    <div class="divider">
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="send-button-container">
+      <button mat-raised-button color="primary" (click)="sendPoll()">
+        Send <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

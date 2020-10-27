@@ -22,5 +22,22 @@ body {
   background-attachment: fixed;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.snackbar-error {
+  background-color: rgb(255, 57, 57);
+}
+
+.snackbar-warning {
+  background-color: rgb(255, 183, 27);
+}
+
+.snackbar-success {
+  background-color: rgb(25, 255, 83);
+}

@@ -1,0 +1,48 @@
+@import "./src/styles";
+
+.create-container {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  align-content: center;
+  font-family: $font;
+  background-color: $bg-overlay;
+  padding: 40px 0;
+
+  h1 {
+    font-size: 4em;
+    margin: 30px;
+  }
+  .data-container {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.445);
+    border-radius: 15px;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    .description {
+      width: 100%;
+    }
+
+    .name-input {
+      font-size: 1.2em;
+      width: calc(100% - 10px);
+      margin: 10px 5px;
+    }
+
+    .send-button-container {
+      margin: 10px 10px 5px 10px;
+    }
+
+    .divider {
+      margin: 5px 0;
+      width: 100%;
+    }
+  }
+}

@@ -11,6 +11,7 @@ import Datepickk from 'datepickk';
 import { AppState, RoomIds } from '../../store/app.state';
 import { ConnectService } from '../../services/connect.service';
 import { Router } from '@angular/router';
+import { UAlertService } from '../../services/ualert.service';
 
 export type SelectedMode = 'None' | 'Date' | 'Text';
 
@@ -18,6 +19,7 @@ export interface roomlistentry {
   entrydata: string;
   date?: Date;
   votes?: string[];
+  id?: number;
 }
 
 export interface RoomObject {
@@ -54,7 +56,11 @@ export class CreateComponent implements OnInit {
 
   createRoomIds: RoomIds;
 
-  constructor(private connectService: ConnectService, private router: Router) {}
+  constructor(
+    private connectService: ConnectService,
+    private router: Router,
+    private uAlert: UAlertService
+  ) {}
 
   ngOnInit(): void {
     this.createRoomIds$.subscribe((createRoomIds: RoomIds) => {
@@ -99,11 +105,14 @@ export class CreateComponent implements OnInit {
       console.log(newRoom.url);
 
       if (this.selectedMode == 'Text') {
+        let i = 0;
         for (let entry of this.optionsList) {
           newRoom.data.push({
             votes: [],
             entrydata: entry.entrydata,
+            id: i,
           });
+          i++;
         }
       } else {
         newRoom.data = this.formatDates(this.datepicker.selectedDates);
@@ -115,7 +124,12 @@ export class CreateComponent implements OnInit {
             queryParams: { rId: res.roomId, cId: res.creatorId },
           });
         },
-        (err) => {}
+        (err) => {
+          this.uAlert.setAlert(
+            'Something went wrong! Please try again!',
+            'Error'
+          );
+        }
       );
     }
   }
@@ -138,6 +152,7 @@ export class CreateComponent implements OnInit {
     ];
 
     let formattedDates: roomlistentry[] = [];
+    let i = 0;
     for (let date of dates) {
       let stringDate =
         days[date.getDay()] +
@@ -149,7 +164,9 @@ export class CreateComponent implements OnInit {
         entrydata: stringDate,
         date: date,
         votes: [],
+        id: i,
       });
+      i++;
     }
     return formattedDates;
   }

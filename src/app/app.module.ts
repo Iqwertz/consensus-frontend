@@ -1,3 +1,4 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppState } from './store/app.state';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,8 +17,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PolldataComponent } from './pages/polldata/polldata.component';
+import { PollComponent } from './pages/poll/poll.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { PolldataComponent } from './pages/polldata/polldata.component';
     LandingComponent,
     CreateComponent,
     PolldataComponent,
+    PollComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,9 @@ import { PolldataComponent } from './pages/polldata/polldata.component';
     MatIconModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,10 +1,15 @@
 import { LandingComponent } from './pages/landing/landing.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './pages/create/create.component';
 import { PolldataComponent } from './pages/polldata/polldata.component';
+import { PollComponent } from './pages/poll/poll.component';
 
 const routes: Routes = [
+  {
+    path: 'poll',
+    component: PollComponent,
+  },
   {
     path: 'create',
     component: CreateComponent,
