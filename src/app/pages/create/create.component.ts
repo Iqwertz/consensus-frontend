@@ -94,7 +94,7 @@ export class CreateComponent implements OnInit {
       let newRoom: RoomObject = {
         titel: this.titel,
         url: window.location.origin + '/poll?rId=' + this.createRoomIds.roomId,
-        description: this.description,
+        description: this.description || '',
         creationDate: new Date(),
         roomId: this.createRoomIds.roomId,
         creatorId: this.createRoomIds.creatorId,

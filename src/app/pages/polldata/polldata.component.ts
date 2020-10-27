@@ -1,9 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomIds } from '../../store/app.state';
 import { ConnectService } from '../../services/connect.service';
 import { RoomObject } from '../create/create.component';
 import { UAlertService } from '../../services/ualert.service';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
+export interface ResultsDataTable {
+  option: string;
+  votes: number;
+  persons: string[];
+}
 
 @Component({
   templateUrl: './polldata.component.html',
@@ -21,6 +29,10 @@ export class PolldataComponent implements OnInit {
     creatorId: '',
   };
 
+  tableData: ResultsDataTable[] = [];
+  displayedColumns: string[] = ['option', 'votes'];
+  dataSource;
+
   titel: string = '';
   description: string = '';
   pollData: RoomObject;
@@ -36,14 +48,29 @@ export class PolldataComponent implements OnInit {
         this.pollData = res;
         this.titel = this.pollData.titel;
         this.description = this.pollData.description;
+
+        for (let entry of this.pollData.data) {
+          let tdata: ResultsDataTable = {
+            option: entry.entrydata,
+            votes: entry.votes.length,
+            persons: entry.votes,
+          };
+
+          this.tableData.push(tdata);
+          console.log(this.tableData);
+          this.dataSource = new MatTableDataSource(this.tableData);
+        }
       },
       (err) => {
-        this.uAlert.setAlert(
-          'Something went wrong! Please try again!',
-          'Error'
-        );
+        this.uAlert.setAlert('Something went wrong!', 'Error');
       }
     );
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   copyStringToClipboard(str: string) {

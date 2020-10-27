@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PolldataComponent } from './pages/polldata/polldata.component';
 import { PollComponent } from './pages/poll/poll.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSnackBarModule,
     MatListModule,
     MatDividerModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
