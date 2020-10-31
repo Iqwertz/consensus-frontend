@@ -6,12 +6,13 @@ import {
   ElementRef,
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import Datepickk from 'datepickk';
 import { AppState, RoomIds } from '../../store/app.state';
 import { ConnectService } from '../../services/connect.service';
 import { Router } from '@angular/router';
 import { UAlertService } from '../../services/ualert.service';
+import { SetCreateRoomIds } from '../../store/app.action';
 
 export type SelectedMode = 'None' | 'Date' | 'Text';
 
@@ -59,13 +60,17 @@ export class CreateComponent implements OnInit {
   constructor(
     private connectService: ConnectService,
     private router: Router,
-    private uAlert: UAlertService
+    private uAlert: UAlertService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
     this.createRoomIds$.subscribe((createRoomIds: RoomIds) => {
       this.createRoomIds = createRoomIds;
     });
+    if (this.createRoomIds.creatorId == '' || this.createRoomIds.roomId == '') {
+      this.router.navigate(['']);
+    }
   }
 
   ngAfterViewInit() {
@@ -120,6 +125,9 @@ export class CreateComponent implements OnInit {
 
       this.connectService.createRoom(newRoom).subscribe(
         (res) => {
+          this.store.dispatch(
+            new SetCreateRoomIds({ roomId: '', creatorId: '' })
+          );
           this.router.navigate(['/polldata'], {
             queryParams: { rId: res.roomId, cId: res.creatorId },
           });

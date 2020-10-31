@@ -48,26 +48,29 @@ export class PollComponent implements OnInit {
 
   ngOnInit(): void {
     this.pollId = this.Activatedroute.snapshot.queryParamMap.get('rId') || '0';
-
-    this.connectService.getPoll(this.pollId).subscribe(
-      (res) => {
-        this.pollData = res;
-        this.titel = this.pollData.titel;
-        this.description = this.pollData.description;
-      },
-      (err) => {
-        if (err.error.message == 'PollIdNotFound') {
-          this.router.navigate(['notfound']);
-        } else {
-          this.uAlert.setAlert(
-            'Sorry there is currently a Server Error!',
-            'Error'
-          );
+    if (this.pollId == '0') {
+      this.router.navigate(['']);
+    } else {
+      this.connectService.getPoll(this.pollId).subscribe(
+        (res) => {
+          this.pollData = res;
+          this.titel = this.pollData.titel;
+          this.description = this.pollData.description;
+        },
+        (err) => {
+          if (err.error.message == 'PollIdNotFound') {
+            this.router.navigate(['notfound']);
+          } else {
+            this.uAlert.setAlert(
+              'Sorry there is currently a Server Error!',
+              'Error'
+            );
+          }
         }
-      }
-    );
+      );
 
-    this.name = localStorage.getItem('name');
+      this.name = localStorage.getItem('name');
+    }
   }
 
   sendPoll() {

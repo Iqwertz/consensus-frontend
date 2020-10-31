@@ -72,38 +72,42 @@ export class PolldataComponent implements OnInit, AfterViewInit {
     this.pollIds.creatorId =
       this.Activatedroute.snapshot.queryParamMap.get('cId') || '0';
 
-    this.connectService.getPollData(this.pollIds).subscribe(
-      (res) => {
-        this.pollData = res;
-        this.titel = this.pollData.titel;
-        this.description = this.pollData.description;
+    if (this.pollIds.roomId == '0' || this.pollIds.creatorId == '0') {
+      this.router.navigate(['']);
+    } else {
+      this.connectService.getPollData(this.pollIds).subscribe(
+        (res) => {
+          this.pollData = res;
+          this.titel = this.pollData.titel;
+          this.description = this.pollData.description;
 
-        this.tableData = [];
-        for (let entry of this.pollData.data) {
-          let tdata: ResultsDataTable = {
-            option: entry.entrydata,
-            votes: entry.votes.length,
-            persons: entry.votes,
-            id: entry.id,
-          };
+          this.tableData = [];
+          for (let entry of this.pollData.data) {
+            let tdata: ResultsDataTable = {
+              option: entry.entrydata,
+              votes: entry.votes.length,
+              persons: entry.votes,
+              id: entry.id,
+            };
 
-          this.tableData.push(tdata);
+            this.tableData.push(tdata);
+          }
+          console.log(this.tableData);
+          this.dataSource = new MatTableDataSource(this.tableData);
+          this.dataSource.sort = this.sort;
+        },
+        (err) => {
+          if (err.error.message == 'PollIdNotFound') {
+            this.router.navigate(['notfound']);
+          } else {
+            this.uAlert.setAlert(
+              'Sorry there is currently a Server Error!',
+              'Error'
+            );
+          }
         }
-        console.log(this.tableData);
-        this.dataSource = new MatTableDataSource(this.tableData);
-        this.dataSource.sort = this.sort;
-      },
-      (err) => {
-        if (err.error.message == 'PollIdNotFound') {
-          this.router.navigate(['notfound']);
-        } else {
-          this.uAlert.setAlert(
-            'Sorry there is currently a Server Error!',
-            'Error'
-          );
-        }
-      }
-    );
+      );
+    }
   }
 
   ngAfterViewInit() {
