@@ -23,6 +23,7 @@ import { PolldataComponent } from './pages/polldata/polldata.component';
 import { PollComponent } from './pages/poll/poll.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatDividerModule,
     MatTableModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomIds } from '../../store/app.state';
 import { ConnectService } from '../../services/connect.service';
 import { RoomObject } from '../create/create.component';
 import { UAlertService } from '../../services/ualert.service';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 export interface ResultsDataTable {
   option: string;
@@ -17,7 +17,7 @@ export interface ResultsDataTable {
   templateUrl: './polldata.component.html',
   styleUrls: ['./polldata.component.scss'],
 })
-export class PolldataComponent implements OnInit {
+export class PolldataComponent implements OnInit, AfterViewInit {
   constructor(
     private Activatedroute: ActivatedRoute,
     private router: Router,
@@ -29,13 +29,21 @@ export class PolldataComponent implements OnInit {
     creatorId: '',
   };
 
-  tableData: ResultsDataTable[] = [];
+  tableData: ResultsDataTable[] = [
+    {
+      option: 'a',
+      votes: 1,
+      persons: [],
+    },
+  ];
   displayedColumns: string[] = ['option', 'votes'];
-  dataSource;
+  dataSource = new MatTableDataSource(this.tableData);
 
   titel: string = '';
   description: string = '';
   pollData: RoomObject;
+
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   ngOnInit(): void {
     this.pollIds.roomId =
@@ -49,6 +57,7 @@ export class PolldataComponent implements OnInit {
         this.titel = this.pollData.titel;
         this.description = this.pollData.description;
 
+        this.tableData = [];
         for (let entry of this.pollData.data) {
           let tdata: ResultsDataTable = {
             option: entry.entrydata,
@@ -57,17 +66,15 @@ export class PolldataComponent implements OnInit {
           };
 
           this.tableData.push(tdata);
-          console.log(this.tableData);
-          this.dataSource = new MatTableDataSource(this.tableData);
         }
+        console.log(this.tableData);
+        this.dataSource = new MatTableDataSource(this.tableData);
       },
       (err) => {
         this.uAlert.setAlert('Something went wrong!', 'Error');
       }
     );
   }
-
-  @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
