@@ -94,7 +94,14 @@ export class PolldataComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
       },
       (err) => {
-        this.uAlert.setAlert('Something went wrong!', 'Error');
+        if (err.error.message == 'PollIdNotFound') {
+          this.router.navigate(['notfound']);
+        } else {
+          this.uAlert.setAlert(
+            'Sorry there is currently a Server Error!',
+            'Error'
+          );
+        }
       }
     );
   }

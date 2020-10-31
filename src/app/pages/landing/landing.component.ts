@@ -5,6 +5,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { RoomIds } from '../../store/app.state';
+import { UAlertService } from '../../services/ualert.service';
 
 @Component({
   templateUrl: './landing.component.html',
@@ -17,7 +18,8 @@ export class LandingComponent implements OnInit {
   constructor(
     private store: Store,
     private connectService: ConnectService,
-    private router: Router
+    private router: Router,
+    private uAlert: UAlertService
   ) {}
 
   ngOnInit(): void {}
@@ -29,7 +31,7 @@ export class LandingComponent implements OnInit {
         this.router.navigate(['create']);
       },
       (err) => {
-        alert(`Couldn't reach server`);
+        this.uAlert.setAlert('Couldn`t reach server', 'Error');
       }
     );
   }

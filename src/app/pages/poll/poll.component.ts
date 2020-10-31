@@ -56,10 +56,14 @@ export class PollComponent implements OnInit {
         this.description = this.pollData.description;
       },
       (err) => {
-        this.uAlert.setAlert(
-          'Something went wrong! Please try again!',
-          'Error'
-        );
+        if (err.error.message == 'PollIdNotFound') {
+          this.router.navigate(['notfound']);
+        } else {
+          this.uAlert.setAlert(
+            'Sorry there is currently a Server Error!',
+            'Error'
+          );
+        }
       }
     );
 
@@ -67,11 +71,12 @@ export class PollComponent implements OnInit {
   }
 
   sendPoll() {
+    console.log(this.pollData.parNames);
     if (this.name.length > 0) {
       if (
         !this.pollData.parNames
           .map((name) => name.toLowerCase())
-          .includes(this.name)
+          .includes(this.name.toLowerCase())
       ) {
         let votes: number[] = [];
         for (let entry of this.pollSelect) {
@@ -105,7 +110,7 @@ export class PollComponent implements OnInit {
           }
         );
       } else {
-        this.uAlert.setAlert('This Name already exists!', 'Error');
+        this.uAlert.setAlert('This Name already exists!', 'Warning');
       }
     } else {
       this.uAlert.setAlert('Please enter a Name', 'Error');

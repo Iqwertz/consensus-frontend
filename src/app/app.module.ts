@@ -24,6 +24,7 @@ import { PollComponent } from './pages/poll/poll.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { PollNotFoundComponent } from './pages/poll-not-found/poll-not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatSortModule } from '@angular/material/sort';
     CreateComponent,
     PolldataComponent,
     PollComponent,
+    PollNotFoundComponent,
   ],
   imports: [
     BrowserModule,

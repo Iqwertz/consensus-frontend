@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './pages/create/create.component';
 import { PolldataComponent } from './pages/polldata/polldata.component';
 import { PollComponent } from './pages/poll/poll.component';
+import { PollNotFoundComponent } from './pages/poll-not-found/poll-not-found.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'polldata',
     component: PolldataComponent,
+  },
+  {
+    path: 'notfound',
+    component: PollNotFoundComponent,
   },
   {
     path: '',
