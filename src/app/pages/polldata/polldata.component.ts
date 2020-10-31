@@ -6,8 +6,16 @@ import { RoomObject } from '../create/create.component';
 import { UAlertService } from '../../services/ualert.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 export interface ResultsDataTable {
+  id: number;
   option: string;
   votes: number;
   persons: string[];
@@ -16,6 +24,16 @@ export interface ResultsDataTable {
 @Component({
   templateUrl: './polldata.component.html',
   styleUrls: ['./polldata.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class PolldataComponent implements OnInit, AfterViewInit {
   constructor(
@@ -31,17 +49,20 @@ export class PolldataComponent implements OnInit, AfterViewInit {
 
   tableData: ResultsDataTable[] = [
     {
+      id: 0,
       option: 'a',
       votes: 1,
       persons: [],
     },
   ];
-  displayedColumns: string[] = ['option', 'votes'];
+  displayedColumns: string[] = ['id', 'option', 'votes'];
   dataSource = new MatTableDataSource(this.tableData);
 
   titel: string = '';
   description: string = '';
   pollData: RoomObject;
+
+  expandedElement: ResultsDataTable | null;
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -63,12 +84,14 @@ export class PolldataComponent implements OnInit, AfterViewInit {
             option: entry.entrydata,
             votes: entry.votes.length,
             persons: entry.votes,
+            id: entry.id,
           };
 
           this.tableData.push(tdata);
         }
         console.log(this.tableData);
         this.dataSource = new MatTableDataSource(this.tableData);
+        this.dataSource.sort = this.sort;
       },
       (err) => {
         this.uAlert.setAlert('Something went wrong!', 'Error');

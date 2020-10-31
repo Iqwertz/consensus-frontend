@@ -36,6 +36,45 @@
       table {
         width: 100%;
       }
+
+      tr.example-detail-row {
+        height: 0;
+      }
+
+      tr.example-element-row:not(.example-expanded-row):hover {
+        background: whitesmoke;
+      }
+
+      tr.example-element-row:not(.example-expanded-row):active {
+        background: #efefef;
+      }
+
+      .example-element-row td {
+        border-bottom-width: 0;
+      }
+
+      .example-element-detail {
+        overflow: hidden;
+        display: flex;
+
+        .persons-list {
+          margin: 15px 10px;
+          white-space: nowrap;
+          display: flex;
+          flex-flow: row;
+          flex-wrap: wrap;
+          .persons-list-element {
+            margin: 3px 5px;
+            padding: 5px 9px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 2px #000;
+            background-color: #c2185b;
+            max-width: 90px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
     }
   }
 }
