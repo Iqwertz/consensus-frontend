@@ -1,3 +1,4 @@
+import { SuccessComponent } from './pages/success/success.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -24,6 +25,10 @@ const routes: Routes = [
     component: PollNotFoundComponent,
   },
   {
+    path: 'success',
+    component: SuccessComponent,
+  },
+  {
     path: '',
     component: LandingComponent,
   },
@@ -33,4 +38,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

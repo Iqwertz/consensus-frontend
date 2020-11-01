@@ -44,7 +44,7 @@ export class PollComponent implements OnInit {
     private router: Router,
     private connectService: ConnectService,
     private uAlert: UAlertService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.pollId = this.Activatedroute.snapshot.queryParamMap.get('rId') || '0';
@@ -70,6 +70,9 @@ export class PollComponent implements OnInit {
       );
 
       this.name = localStorage.getItem('name');
+      if (this.name == undefined) {
+        this.name = '';
+      }
     }
   }
 
@@ -97,7 +100,8 @@ export class PollComponent implements OnInit {
         this.connectService.setVote(vote).subscribe(
           (res) => {
             if (res.serverMessage == '200') {
-              this.router.navigate(['']);
+              localStorage.setItem("lastVotedPoll", window.location.toString());
+              this.router.navigate(['success']);
             } else {
               this.uAlert.setAlert(
                 'Something went wrong! Please try again!',

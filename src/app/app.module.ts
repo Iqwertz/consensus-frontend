@@ -25,6 +25,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { PollNotFoundComponent } from './pages/poll-not-found/poll-not-found.component';
+import { SuccessComponent } from './pages/success/success.component';
+import { SidenavComponent } from './Components/sidenav/sidenav.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { PollNotFoundComponent } from './pages/poll-not-found/poll-not-found.com
     PolldataComponent,
     PollComponent,
     PollNotFoundComponent,
+    SuccessComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,8 +61,9 @@ import { PollNotFoundComponent } from './pages/poll-not-found/poll-not-found.com
     MatDividerModule,
     MatTableModule,
     MatSortModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

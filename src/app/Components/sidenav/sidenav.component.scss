@@ -1,0 +1,29 @@
+.nav-container {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+
+  .example-container {
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  .example-sidenav {
+    padding: 20px 40px;
+  }
+
+  .nav-button {
+    cursor: pointer;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+
+    .menu {
+      cursor: pointer;
+      color: #fff;
+      width: 3rem;
+      height: 3rem;
+      font-size: 3rem;
+    }
+  }
+}
