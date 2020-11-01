@@ -1,0 +1,30 @@
+@import "./src/styles";
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  align-content: center;
+  font-family: $font;
+  background-color: $bg-overlay;
+
+  .message {
+    position: relative;
+    top: 25%;
+    margin: 25px;
+    color: #fff;
+    font-size: 2em;
+  }
+
+  .create-button {
+    position: relative;
+    top: 30%;
+    button {
+      zoom: 2;
+    }
+  }
+}

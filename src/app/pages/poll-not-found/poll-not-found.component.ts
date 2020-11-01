@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './poll-not-found.component.html',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PollNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  Back() {
+    this.router.navigate([""]);
   }
 
 }
