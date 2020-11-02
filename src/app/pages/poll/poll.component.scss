@@ -40,6 +40,23 @@
       margin: 10px 10px 5px 10px;
     }
 
+    .list-option-container {
+      display: flex;
+      flex-flow: row;
+
+      .voted {
+        margin-right: 5px;
+        width: 30px;
+        .votes-label {
+          bottom: 0;
+          position: absolute;
+          text-align: center;
+          font-size: 0.6em;
+          left: 9px;
+        }
+      }
+    }
+
     .divider {
       margin: 5px 0;
       width: 100%;

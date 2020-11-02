@@ -1,4 +1,4 @@
-import { NewVote } from './../pages/poll/poll.component';
+import { NewVote, UpdateVote } from './../pages/poll/poll.component';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,7 +20,7 @@ export interface ServerStatusResponse {
 })
 export class ConnectService {
   serverUrl: string = environment.serverAddress;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   newRoom(): Observable<NewRoomResponse> {
     return this.http.post<NewRoomResponse>(this.serverUrl + '/new', {});
@@ -43,6 +43,13 @@ export class ConnectService {
   setVote(data: NewVote): Observable<ServerStatusResponse> {
     return this.http.post<ServerStatusResponse>(
       this.serverUrl + '/setVote',
+      data
+    );
+  }
+
+  updateVote(data: UpdateVote): Observable<ServerStatusResponse> {
+    return this.http.post<ServerStatusResponse>(
+      this.serverUrl + '/updateVote',
       data
     );
   }

@@ -28,7 +28,17 @@
     <mat-selection-list [(ngModel)]="pollSelect">
       <mat-label>Select:</mat-label>
       <mat-list-option *ngFor="let entry of pollData.data" [value]="entry">
+        <div class="list-option-container">
+        <div *ngIf="pollData.votesVisible" class="voted">
+           {{calcVotes(entry)}}
+          <div class="votes-label">
+            Votes
+          </div>
+        </div>
+        <div>
         {{ entry.entrydata }}
+        </div>
+        </div>
         <mat-divider></mat-divider>
       </mat-list-option>
     </mat-selection-list>
@@ -38,8 +48,11 @@
     </div>
 
     <div class="send-button-container">
-      <button mat-raised-button color="primary" (click)="sendPoll()">
+      <button *ngIf="!alreadyVoted" mat-raised-button color="primary" (click)="sendPoll()">
         Send <mat-icon>send</mat-icon>
+      </button>
+      <button *ngIf="alreadyVoted" mat-raised-button color="primary" (click)="sendPoll()">
+              Update Vote <mat-icon>send</mat-icon>
       </button>
     </div>
   </div>

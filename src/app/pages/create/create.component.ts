@@ -50,7 +50,7 @@ export class CreateComponent implements OnInit {
   datepicker;
   titel: string;
   description: string;
-  email: string;
+  email: string = "";
 
   votesVisible: boolean = false;
 
@@ -80,7 +80,7 @@ export class CreateComponent implements OnInit {
       this.createRoomIds = createRoomIds;
     });
     if (this.createRoomIds.creatorId == '' || this.createRoomIds.roomId == '') {
-      //this.router.navigate(['']);
+      this.router.navigate(['']);
     }
   }
 
