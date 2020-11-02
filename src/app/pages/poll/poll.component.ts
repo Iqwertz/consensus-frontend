@@ -11,6 +11,7 @@ export interface PollResponse {
   roomId: string;
   parNames: string[];
   data: roomlistentry[];
+  votesVisible: boolean;
 }
 
 export interface NewVote {
@@ -31,6 +32,7 @@ export class PollComponent implements OnInit {
     parNames: [],
     roomId: '',
     titel: '',
+    votesVisible: false,
   };
   titel: string = '';
   description: string = '';

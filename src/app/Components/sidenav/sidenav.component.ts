@@ -1,5 +1,10 @@
+import { SetCreateRoomIds } from './../../store/app.action';
+import { RoomIds } from './../../store/app.state';
+import { UAlertService } from './../../services/ualert.service';
+import { ConnectService } from './../../services/connect.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 
 export interface CreatedPollsStorage {
   data: CreatedPolls[];
@@ -23,7 +28,10 @@ export class SidenavComponent implements OnInit {
     data: [],
   };
 
-  constructor(private router: Router) { }
+  constructor(private store: Store,
+    private connectService: ConnectService,
+    private router: Router,
+    private uAlert: UAlertService) { }
 
   ngOnInit(): void {
     this.PollsList = JSON.parse(localStorage.getItem("createdPolls"));
@@ -38,6 +46,18 @@ export class SidenavComponent implements OnInit {
     this.router.navigate(['/polldata'], {
       queryParams: { rId: rId, cId: cId },
     });
+  }
+
+  createClicked() {
+    this.connectService.newRoom().subscribe(
+      (res: RoomIds) => {
+        this.store.dispatch(new SetCreateRoomIds(res));
+        this.router.navigate(['create']);
+      },
+      (err) => {
+        this.uAlert.setAlert('Couldn`t reach server', 'Error');
+      }
+    );
   }
 
 }

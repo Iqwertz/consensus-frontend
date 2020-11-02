@@ -28,12 +28,15 @@ export interface roomlistentry {
 export interface RoomObject {
   titel: string;
   url: string;
+  editUrl: string;
   roomId: string;
   creatorId: string;
   creationDate: Date;
   description: string;
   parNames: string[];
   data: roomlistentry[];
+  votesVisible: boolean;
+  email?: string;
 }
 
 @Component({
@@ -47,10 +50,16 @@ export class CreateComponent implements OnInit {
   datepicker;
   titel: string;
   description: string;
+  email: string;
+
+  votesVisible: boolean = false;
 
   optionsList: roomlistentry[] = [{ entrydata: '' }];
 
   titelFormControl = new FormControl('', [Validators.required]);
+  emailFormControl = new FormControl('', [
+    Validators.email,
+  ]);
 
   selectedMode: SelectedMode = 'Date';
 
@@ -71,7 +80,7 @@ export class CreateComponent implements OnInit {
       this.createRoomIds = createRoomIds;
     });
     if (this.createRoomIds.creatorId == '' || this.createRoomIds.roomId == '') {
-      this.router.navigate(['']);
+      //this.router.navigate(['']);
     }
   }
 
@@ -97,16 +106,25 @@ export class CreateComponent implements OnInit {
   }
 
   createPoll() {
+    let validEmail: string;
+    if (this.emailFormControl.hasError('email')) {
+      validEmail = "";
+    } else {
+      validEmail = this.email;
+    }
     if (this.titel !== undefined && this.selectedMode != 'None') {
       let newRoom: RoomObject = {
         titel: this.titel,
         url: window.location.origin + '/poll?rId=' + this.createRoomIds.roomId,
+        editUrl: window.location.origin + '/polldata?rId=' + this.createRoomIds.roomId + '&cId=' + this.createRoomIds.creatorId,
         description: this.description || '',
         creationDate: new Date(),
         roomId: this.createRoomIds.roomId,
         creatorId: this.createRoomIds.creatorId,
         parNames: [],
         data: [],
+        votesVisible: this.votesVisible,
+        email: validEmail,
       };
 
       console.log(newRoom.url);

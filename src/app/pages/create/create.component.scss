@@ -32,18 +32,11 @@
     padding: 20px;
     color: #fff;
 
-    .titel-container {
+    .textfield {
       display: flex;
       flex-flow: column;
       padding: 5px 6px;
       font-size: 1.5em;
-    }
-
-    .description-container {
-      display: flex;
-      flex-flow: column;
-      padding: 5px 6px;
-      font-size: 1.2em;
     }
 
     .select-mode-container {
@@ -72,6 +65,16 @@
         }
       }
     }
+
+    .toggle-view {
+      font-size: 1.5em;
+      margin: 15px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      align-content: center;
+    }
+
     .create-button-container {
       padding: 5px;
       display: flex;

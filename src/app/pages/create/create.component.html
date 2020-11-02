@@ -3,7 +3,7 @@
   <h1>Create Poll</h1>
 
   <div class="settings-container">
-    <div class="titel-container">
+    <div class="titel-container textfield">
       <mat-form-field class="full-width">
         <mat-label>Titel</mat-label>
         <input
@@ -18,10 +18,20 @@
       </mat-form-field>
     </div>
 
-    <div class="description-container">
+    <div class="description-container textfield">
       <mat-form-field class="full-width">
         <mat-label>Description: (optional)</mat-label>
         <textarea matInput [(ngModel)]="description"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="email-container textfield">
+      <mat-form-field class="full-width">
+        <mat-label>Email: (opional)</mat-label>
+        <input matInput [formControl]="emailFormControl" placeholder="Your Email" [(ngModel)]="email" />
+        <mat-error *ngIf="emailFormControl.hasError('email')">
+          Email is invalid
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -71,6 +81,9 @@
           + Add Option
         </button>
       </div>
+    </div>
+    <div class="toggle-view">
+    <mat-slide-toggle color="primary" [(ngModel)]="votesVisible">Let participants view results</mat-slide-toggle>
     </div>
     <div class="create-button-container">
       <button mat-raised-button color="primary" (click)="createPoll()">

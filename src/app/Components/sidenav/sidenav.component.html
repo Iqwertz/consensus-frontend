@@ -6,6 +6,10 @@
       </div>
       <p>Your Polls:</p>
       <mat-card *ngFor="let item of PollsList.data" (click)="routeTo(item.rId, item.cId)" >{{item.titel}}</mat-card>
+
+    <button mat-raised-button color="primary" (click)="createClicked()">
+      + Create
+    </button>
     </mat-sidenav>
       <div class="nav-button" (click)="drawer.toggle()">
         <mat-icon class="menu">menu</mat-icon>

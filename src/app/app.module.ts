@@ -28,6 +28,7 @@ import { PollNotFoundComponent } from './pages/poll-not-found/poll-not-found.com
 import { SuccessComponent } from './pages/success/success.component';
 import { SidenavComponent } from './Components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatTableModule,
     MatSortModule,
     MatSidenavModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
