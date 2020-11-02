@@ -1,15 +1,43 @@
+@import "./src/styles";
+
 .nav-container {
-  z-index: 10;
   position: fixed;
-  width: 100%;
+  right: 0;
+  min-width: 300px;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 20;
 
   .example-container {
     height: 100vh;
     background-color: rgba(255, 255, 255, 0);
   }
 
+  p {
+    font-size: 2em;
+  }
+
+  .close {
+    color: #ff0000;
+    position: absolute;
+    top: 10px;
+    right: 2em;
+    cursor: pointer;
+
+    mat-icon {
+      font-size: 3em;
+    }
+  }
+
   .example-sidenav {
-    padding: 20px 40px;
+    z-index: 10;
+    padding: 60px 40px;
+
+    mat-card {
+      width: 12vw;
+      background-color: #5a5a5a;
+      margin: 10px 0;
+      cursor: pointer;
+    }
   }
 
   .nav-button {
@@ -24,6 +52,16 @@
       width: 3rem;
       height: 3rem;
       font-size: 3rem;
+    }
+  }
+}
+
+@media screen and (max-width: $media-breakpoint-small) {
+  .example-sidenav {
+    width: 100vw;
+
+    mat-card {
+      width: calc(100% - 40px) !important;
     }
   }
 }

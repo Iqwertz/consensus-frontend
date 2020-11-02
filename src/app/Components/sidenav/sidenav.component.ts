@@ -1,4 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+export interface CreatedPollsStorage {
+  data: CreatedPolls[];
+}
+
+export interface CreatedPolls {
+  creationDate: Date;
+  cId: string;
+  rId: string;
+  titel: string;
+}
 
 @Component({
   selector: 'app-sidenav',
@@ -7,11 +19,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  showFiller = false;
+  PollsList: CreatedPollsStorage = {
+    data: [],
+  };
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.PollsList = JSON.parse(localStorage.getItem("createdPolls"));
+    if (this.PollsList == null) {
+      this.PollsList = {
+        data: [],
+      }
+    }
+  }
+
+  routeTo(rId: string, cId: string) {
+    this.router.navigate(['/polldata'], {
+      queryParams: { rId: rId, cId: cId },
+    });
   }
 
 }

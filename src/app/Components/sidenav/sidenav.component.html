@@ -1,11 +1,11 @@
 <div class="nav-container">
   <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav #drawer class="example-sidenav" mode="side" position="end">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
+      <div class="close" (click)="drawer.toggle()">
+<mat-icon>close</mat-icon>
+      </div>
+      <p>Your Polls:</p>
+      <mat-card *ngFor="let item of PollsList.data" (click)="routeTo(item.rId, item.cId)" >{{item.titel}}</mat-card>
     </mat-sidenav>
       <div class="nav-button" (click)="drawer.toggle()">
         <mat-icon class="menu">menu</mat-icon>

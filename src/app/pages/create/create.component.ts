@@ -1,3 +1,4 @@
+import { CreatedPolls } from './../../Components/sidenav/sidenav.component';
 import {
   Component,
   ViewEncapsulation,
@@ -13,6 +14,7 @@ import { ConnectService } from '../../services/connect.service';
 import { Router } from '@angular/router';
 import { UAlertService } from '../../services/ualert.service';
 import { SetCreateRoomIds } from '../../store/app.action';
+import { CreatedPollsStorage } from 'src/app/Components/sidenav/sidenav.component';
 
 export type SelectedMode = 'None' | 'Date' | 'Text';
 
@@ -62,7 +64,7 @@ export class CreateComponent implements OnInit {
     private router: Router,
     private uAlert: UAlertService,
     private store: Store
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createRoomIds$.subscribe((createRoomIds: RoomIds) => {
@@ -128,6 +130,23 @@ export class CreateComponent implements OnInit {
           this.store.dispatch(
             new SetCreateRoomIds({ roomId: '', creatorId: '' })
           );
+
+          let cPolls: CreatedPollsStorage;
+          cPolls = JSON.parse(localStorage.getItem("createdPolls"));
+          console.log(cPolls);
+          if (cPolls == null) {
+            cPolls = {
+              data: [],
+            }
+          }
+          let cPollEntry: CreatedPolls = {
+            cId: res.creatorId,
+            rId: res.roomId,
+            creationDate: new Date(),
+            titel: this.titel,
+          }
+          cPolls.data.unshift(cPollEntry);
+          localStorage.setItem("createdPolls", JSON.stringify(cPolls));
           this.router.navigate(['/polldata'], {
             queryParams: { rId: res.roomId, cId: res.creatorId },
           });
@@ -139,6 +158,8 @@ export class CreateComponent implements OnInit {
           );
         }
       );
+    } else {
+      this.uAlert.setAlert("Please enter a Titel", "Warning")
     }
   }
 
