@@ -40,29 +40,36 @@
       cursor: pointer;
     }
   }
+}
 
-  .nav-button {
+.nav-button {
+  cursor: pointer;
+  padding: 5px;
+  position: absolute;
+  right: 0;
+
+  .menu {
     cursor: pointer;
-    padding: 5px;
-    position: absolute;
-    right: 0;
-
-    .menu {
-      cursor: pointer;
-      color: #fff;
-      width: 3rem;
-      height: 3rem;
-      font-size: 3rem;
-    }
+    color: #fff;
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
   }
 }
 
-@media screen and (max-width: $media-breakpoint-small) {
-  .example-sidenav {
-    width: 100vw;
+.disNone {
+  display: none;
+}
 
-    mat-card {
-      width: calc(100% - 40px) !important;
+@media screen and (max-width: $media-breakpoint-small) {
+  .nav-container {
+    .example-sidenav {
+      width: 100vw;
+      min-width: 100px;
+
+      mat-card {
+        width: calc(100% - 40px) !important;
+      }
     }
   }
 }

@@ -80,7 +80,7 @@ export class CreateComponent implements OnInit {
       this.createRoomIds = createRoomIds;
     });
     if (this.createRoomIds.creatorId == '' || this.createRoomIds.roomId == '') {
-      this.router.navigate(['']);
+      // this.router.navigate(['']);
     }
   }
 

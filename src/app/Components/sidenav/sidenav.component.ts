@@ -24,6 +24,8 @@ export interface CreatedPolls {
 })
 export class SidenavComponent implements OnInit {
 
+  opend: boolean = false;
+
   PollsList: CreatedPollsStorage = {
     data: [],
   };

@@ -31,3 +31,11 @@
     }
   }
 }
+
+@media screen and (max-width: $media-breakpoint-small) {
+  .landing-container {
+    .titel {
+      font-size: 6em;
+    }
+  }
+}
