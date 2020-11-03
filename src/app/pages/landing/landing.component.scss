@@ -12,6 +12,17 @@
   font-family: $font;
   background-color: $bg-overlay;
 
+  .titel {
+    font-size: 10em;
+    position: relative;
+    top: 20%;
+
+    mat-icon {
+      font-size: 1em;
+      width: 1em;
+    }
+  }
+
   .create-button {
     position: relative;
     top: 30%;

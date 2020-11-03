@@ -29,6 +29,27 @@
       width: 100%;
     }
 
+    .participants-container {
+      width: 80%;
+      margin: 15px 10%;
+      font-size: 1.5em;
+
+      .par-name-list {
+        font-size: 0.8em;
+        margin: 15px;
+        white-space: nowrap;
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    .results-label {
+      font-size: 1.5em;
+      width: 80%;
+      margin: 30px 10% 10px 10%;
+    }
+
     .data-table-container {
       width: 80%;
       margin: 15px 10%;
@@ -63,18 +84,19 @@
           display: flex;
           flex-flow: row;
           flex-wrap: wrap;
-          .persons-list-element {
-            margin: 3px 5px;
-            padding: 5px 9px;
-            border-radius: 8px;
-            box-shadow: 2px 2px 2px #000;
-            background-color: #c2185b;
-            max-width: 90px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
         }
       }
+    }
+
+    .persons-list-element {
+      margin: 3px 5px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 2px #000;
+      background-color: #c2185b;
+      max-width: 90px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

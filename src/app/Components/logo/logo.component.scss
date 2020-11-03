@@ -1,0 +1,18 @@
+.logo {
+  position: absolute;
+  font-size: 3em;
+  top: 30px;
+  left: 30px;
+  color: rgb(160, 255, 122);
+  cursor: pointer;
+  transition: color 1s;
+
+  mat-icon {
+    font-size: 1em;
+    width: 1em;
+  }
+}
+
+.logo:hover {
+  color: rgb(255, 122, 177);
+}

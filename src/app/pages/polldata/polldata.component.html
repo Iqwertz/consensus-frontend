@@ -1,5 +1,6 @@
 <div class="create-container">
   <app-sidenav></app-sidenav>
+  <app-logo></app-logo>
   <h1>{{ titel }}</h1>
   <div class="data-container">
     <mat-card class="description-container" *ngIf="description.length > 0">
@@ -24,6 +25,18 @@
       </button>
     </mat-form-field>
 
+    <div class="participants-container">
+      Participants:
+      <div class="par-name-list">
+      <div class="persons-list-element" *ngFor="let item of pollData.parNames">
+        {{ item }}
+        </div>
+      </div>
+    </div>
+
+    <div class="results-label">
+    Results:
+    </div>
     <div class="data-table-container">
       <table
         mat-table

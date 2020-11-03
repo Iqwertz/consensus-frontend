@@ -29,6 +29,7 @@ import { SuccessComponent } from './pages/success/success.component';
 import { SidenavComponent } from './Components/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { LogoComponent } from './Components/logo/logo.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     PollNotFoundComponent,
     SuccessComponent,
     SidenavComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
