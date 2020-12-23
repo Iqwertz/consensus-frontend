@@ -80,7 +80,7 @@ export class CreateComponent implements OnInit {
       this.createRoomIds = createRoomIds;
     });
     if (this.createRoomIds.creatorId == '' || this.createRoomIds.roomId == '') {
-      // this.router.navigate(['']);
+      this.router.navigate(['']);
     }
   }
 
@@ -115,8 +115,8 @@ export class CreateComponent implements OnInit {
     if (this.titel !== undefined && this.selectedMode != 'None') {
       let newRoom: RoomObject = {
         titel: this.titel,
-        url: window.location.origin + '/poll?rId=' + this.createRoomIds.roomId,
-        editUrl: window.location.origin + '/polldata?rId=' + this.createRoomIds.roomId + '&cId=' + this.createRoomIds.creatorId,
+        url: window.location.origin + '/#/poll?rId=' + this.createRoomIds.roomId,
+        editUrl: window.location.origin + '/#/polldata?rId=' + this.createRoomIds.roomId + '&cId=' + this.createRoomIds.creatorId,
         description: this.description || '',
         creationDate: new Date(),
         roomId: this.createRoomIds.roomId,
