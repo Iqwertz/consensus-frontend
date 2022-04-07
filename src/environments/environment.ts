@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverAddress: "http://62.178.37.97:2871",//"http://localhost:2871",
+  serverAddress: 'https://iqwertz-poller-app.herokuapp.com', //"http://localhost:2871",
 };
 
 /*

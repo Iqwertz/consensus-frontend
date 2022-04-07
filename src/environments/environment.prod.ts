@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  serverAddress: 'https://iqwertz-poller-app.herokuapp.com',
 };
